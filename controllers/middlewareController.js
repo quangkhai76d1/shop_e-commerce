@@ -27,6 +27,7 @@ const middlewareController = {
       }
     });
   },
+
   verifyTokenAndAdmin: (req, res, next) => {
     middlewareController.verifyToken(req, res, () => {
       if (req.user.isAdmin) {
