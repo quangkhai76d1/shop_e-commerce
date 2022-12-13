@@ -22,6 +22,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
+app.use("/api/product", productRouter);
 
 app.listen(process.env.PORT || 8080, () =>
   console.log(`Your app running on port ${process.env.PORT}`)
