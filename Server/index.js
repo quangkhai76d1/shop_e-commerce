@@ -1,0 +1,36 @@
+const express = require("express");
+const app = express();
+
+const mongoose = require("mongoose");
+const cors = require("cors");
+const dotenv = require("dotenv");
+const cookieParser = require("cookie-parser");
+
+const authRouter = require("./routes/auth");
+const userRouter = require("./routes/user");
+const productRouter = require("./routes/product");
+const cartRouter = require("./routes/cart");
+const orderRouter = require("./routes/order");
+const paymentRouter = require("./routes/stripe");
+
+dotenv.config();
+
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(() => console.log("CONNECTED TO MONGODB"))
+  .catch((err) => console.log(err));
+
+app.use(cors());
+app.use(cookieParser());
+app.use(express.json());
+
+app.use("/api/auth", authRouter);
+app.use("/api/user", userRouter);
+app.use("/api/product", productRouter);
+app.use("/api/cart", cartRouter);
+app.use("/api/order", orderRouter);
+app.use("/api/payment", paymentRouter);
+
+app.listen(process.env.PORT || 8080, () =>
+  console.log(`Your app running on port ${process.env.PORT}`)
+);
