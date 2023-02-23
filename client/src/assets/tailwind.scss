@@ -1,0 +1,16 @@
+@tailwind base;
+
+@layer base {
+  html {
+    @apply font-lato;
+  }
+}
+@tailwind components;
+
+@layer components {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+}
+
+@tailwind utilities;
